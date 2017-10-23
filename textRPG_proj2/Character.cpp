@@ -21,9 +21,89 @@ void blueText() {
 	SetConsoleTextAttribute(hConsole, 9);
 }
 
+//get players choice method
+void character::getPlayerChoice() {
+	cout << "> ";
+	getline(cin, playerChoice);
+	cout << endl;
+	transform(playerChoice.begin(), playerChoice.end(), playerChoice.begin(), tolower);
+}
+
+//method used for >looking around<
+void character::lookAround() {
+	//variables
+	string direction[] = {
+		"North",
+		"West",
+		"East",
+		"South"
+	};
+	string object[] = {
+		"Door",
+		"Wall"
+	};
+	string randDir = "s";
+	greenText();
+	cout << "You look around you.\n";
+	cout << "To the " << direction << " you see" << object << ".\n";
+	whiteText();
+}
+
 //players travel method
 void character::travel() {
-
+	blueText();
+	cout << "You decide to travel.\n\n";
+	greenText();
+	cout << "What do you want to do?\n\n";
+	cout << "[L]ook around\n\n";
+	cout << "Go [W]est\n";
+	cout << "Go [E]ast\n";
+	cout << "Go [S]outh\n";
+	cout << "Go [N]orth\n";
+	cout << endl <<"[B]ack\n";
+	whiteText();
+	getPlayerChoice();
+	if (playerChoice == "w") {
+		posX -= 1;
+		greenText();
+		cout << "You go West.\n";
+		whiteText();
+		travel();
+	}
+	else if (playerChoice == "e") {
+		posX += 1;
+		greenText();
+		cout << "You go East.\n";
+		whiteText();
+		travel();
+	}
+	else if (playerChoice == "s") {
+		posY -= 1;
+		greenText();
+		cout << "You go South.\n";
+		whiteText();
+		travel();
+	}
+	else if (playerChoice == "n") {
+		posY += 1;
+		greenText();
+		cout << "You go North.\n";
+		whiteText();
+		travel();
+	}
+	else if (playerChoice == "l") {
+		lookAround();
+	}
+	else if (playerChoice == "b") {
+		endInit();
+	}
+	else {
+		blueText();
+		cout << "Not a valid option!\n";
+		cout << "Please select a valid option!\n\n";
+		whiteText();
+		travel();
+	}
 }
 
 //players inventory method
@@ -48,13 +128,9 @@ void character::endInit() {
 	cout << "[H]elp\n";
 	cout << "[T]ravel\n";
 	cout << "[C]heck your Inventory\n";
-	cout << "placeholder\n";
 	cout << endl << "[Q]uit\n";
 	whiteText();
-	cout << "> ";
-	getline(cin, playerChoice);
-	cout << endl;
-	transform(playerChoice.begin(), playerChoice.end(), playerChoice.begin(), tolower);
+	getPlayerChoice();
 	if (playerChoice == "cs") {
 		blueText();
 		cout << "Current Health: " << currentHealth << "/" << totalHealth << endl;

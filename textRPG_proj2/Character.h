@@ -41,6 +41,8 @@ public:
 	void endInit();
 	void inventory();
 	void travel();
+	void getPlayerChoice();
+	void lookAround();
 
 	//strings
 

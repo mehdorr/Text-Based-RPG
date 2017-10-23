@@ -21,12 +21,33 @@ void blueText() {
 	SetConsoleTextAttribute(hConsole, 9);
 }
 
+//players travel method
+void character::travel() {
+
+}
+
+//players inventory method
+void character::inventory() {
+	blueText();
+	cout << "You look into your backpack and find:\n";
+	whiteText();
+}
+
+//attempt to use a hp/mp potion - remove one from the inventory and restore hp/mp respectively
+void character::useHealthPotion() {
+
+}
+void character::useManaPotion() {
+
+}
+
+//everything else that happens after initial prompts
 void character::endInit() {
 	greenText();
 	cout << "What would you like to do?\n\n";
 	cout << "[H]elp\n";
 	cout << "[T]ravel\n";
-	cout << "placeholder\n";
+	cout << "[C]heck your Inventory\n";
 	cout << "placeholder\n";
 	cout << endl << "[Q]uit\n";
 	whiteText();
@@ -43,11 +64,14 @@ void character::endInit() {
 		cout << "Level: " << level << endl;
 		cout << "Stats (Wisdom/Strength/Dexterity): " << wisdom << " WIS " << strength << " STR " << dexterity << " DEX " << endl;
 		cout << "Character (Name/Profession/Race): " << "You are " << playerName << ", the " << playerClass << ". You are a(n) " << playerRace << "." << endl << endl;
+		cout << "Current Location (X/Y coordinates): " << " X " << posX << " Y " << posY << endl << endl;
 		whiteText();
 		endInit();
 	}
 	else if (playerChoice == "q") {
-		cout << "Goodbye!\n";
+		greenText();
+		cout << "Goodbye!\n\n";
+		whiteText();
 		exit(0);
 	}
 	else if (playerChoice == "h") {
@@ -57,6 +81,12 @@ void character::endInit() {
 		cout << "currentStatus (cs) - prints all available character information.\n\n";
 		whiteText();
 		endInit();
+	}
+	else if (playerChoice == "c") {
+		inventory();
+	}
+	else if (playerChoice == "t") {
+		travel();
 	}
 	else {
 		blueText();
@@ -80,14 +110,18 @@ character::character() {
 	wisdom = 5;
 	strength = 5;
 	dexterity = 5;
-	playerAlive = true;
+	posX = 1;
+	posY = 1;
+	hpPotions = 3;
+	mpPotions = 3;
 }
 
+//checks if the player is still alive
 void character::isAlive() {
-	if (!playerAlive) {
+	if (currentHealth <= 0) {
 		greenText();
 		cout << "You died! Game Over!\n";
-		SetConsoleTextAttribute(hConsole, 9);
+		blueText();
 		printf(R"EOF(
 		||=========================================================||
 		|| ______________________________________________________  ||
@@ -115,6 +149,7 @@ void character::isAlive() {
 	}
 }
 
+//sets the players name
 void character::setPlayerName() {
 	greenText();
 	cout << "What's your name?\n";
@@ -133,6 +168,7 @@ void character::setPlayerName() {
 	}
 }
 
+//sets the players profession (class)
 void character::setPlayerClass() {
 	greenText();
 	cout << "Alright, " << playerName << ", what's your profession?\n";
@@ -198,6 +234,7 @@ void character::setPlayerClass() {
 	}
 }
 
+//sets the players race
 void character::setPlayerRace() {
 	greenText();
 	bool validRace = false;

@@ -27,7 +27,8 @@ public:
 	//...
 	int posX;
 	int posY;
-	bool playerAlive = false;
+	int hpPotions;
+	int mpPotions;
 
 	//functions
 
@@ -38,6 +39,8 @@ public:
 	void setPlayerRace();
 	void isAlive();
 	void endInit();
+	void inventory();
+	void travel();
 
 	//strings
 

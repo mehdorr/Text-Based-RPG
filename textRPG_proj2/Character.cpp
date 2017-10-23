@@ -6,6 +6,8 @@
 #include "Character.h"
 #include <algorithm>
 #include <Windows.h>
+#include <random>
+#include <ctime>
 
 using namespace std;
 
@@ -29,30 +31,36 @@ void character::getPlayerChoice() {
 	transform(playerChoice.begin(), playerChoice.end(), playerChoice.begin(), tolower);
 }
 
-//method used for >looking around<
-void character::lookAround() {
-	//variables
-	string direction[] = {
-		"North",
-		"West",
-		"East",
-		"South"
-	};
+//used for randoming objects when looking around
+string randObj(string randObject) {
 	string object[] = {
 		"Door",
 		"Wall"
 	};
-	string randDir = "s";
+	int objLength = object->length() - 2;
+	/*string placehold;
+	cout << objLength << " objLength\n";
+	getline(cin, placehold);
+	used for debugging length of the array*/
+	randObject = object[rand() % objLength];
+	return randObject;
+}
+
+//method used for >looking around<
+void character::lookAround() {
+	string randObject;
 	greenText();
-	cout << "You look around you.\n";
-	cout << "To the " << direction << " you see" << object << ".\n";
+	cout << "You look around.\n";
+	cout << "To the North you see a(n) " << randObj(randObject) << ".\n";
+	cout << "To the East you see a(n) " << randObj(randObject) << ".\n";
+	cout << "To the South you see a(n) " << randObj(randObject) << ".\n";
+	cout << "To the West you see a(n) " << randObj(randObject) << ".\n\n";
 	whiteText();
+	travel();
 }
 
 //players travel method
 void character::travel() {
-	blueText();
-	cout << "You decide to travel.\n\n";
 	greenText();
 	cout << "What do you want to do?\n\n";
 	cout << "[L]ook around\n\n";
@@ -162,6 +170,9 @@ void character::endInit() {
 		inventory();
 	}
 	else if (playerChoice == "t") {
+		blueText();
+		cout << "You decide to travel.\n\n";
+		whiteText();
 		travel();
 	}
 	else {

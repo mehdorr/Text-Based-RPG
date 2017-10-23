@@ -9,7 +9,7 @@ using namespace std;
 class character {
 public:
 	character();
-	//attributes
+	//stats
 	int currentHealth;
 	int totalHealth;
 	int currentMana;
@@ -17,11 +17,17 @@ public:
 	int currentExp;
 	int neededExp;
 	int level;
+	int currentGold;
+
+	//attributes
+	int wisdom;
+	int strength;
+	int dexterity;
 
 	//...
 	int posX;
 	int posY;
-	bool isAlive();
+	bool playerAlive = false;
 
 	//functions
 
@@ -30,11 +36,14 @@ public:
 	void setPlayerName();
 	void setPlayerClass();
 	void setPlayerRace();
+	void isAlive();
+	void endInit();
 
 	//strings
 
 	string playerName;
 	string playerClass;
 	string playerRace;
+	string playerChoice;
 
 };

@@ -24,26 +24,6 @@ void blueText() {
 	SetConsoleTextAttribute(hConsole, 9);
 }
 
-//initial values for the main character
-character::character() {
-	totalHealth = 100 + (strength * 10);
-	currentHealth = totalHealth;
-	totalMana = 50 + (wisdom * 10);
-	currentMana = totalMana;
-	currentExp = 0;
-	neededExp = 100;
-	currentGold = 50;
-	level = 1;
-	wisdom = 5;
-	strength = 5;
-	dexterity = 5;
-	posX = 1;
-	posY = 1;
-	hpPotions = 3;
-	mpPotions = 3;
-	damage = 5 + (dexterity * 2) + wisdom + (strength * 1.5);
-}
-
 //get players choice method
 void character::getPlayerChoice() {
 	cout << "> ";
@@ -83,7 +63,7 @@ void character::getAttacked() {
 		blueText();
 		cout << "You've been attacked!\n\n";
 		enemy fight;
-		fight.fightEnemy();
+		fight.fightEnemy(this *player);
 	}
 	else {
 		travel();
@@ -485,7 +465,8 @@ void character::checkExp() {
 	if (currentExp >= neededExp) {
 		level++;
 		cout << "Level Up! You are now level " << level << ".\n\n";
-		neededExp = neededExp * 1.2;
+		neededExp = neededExp * 1.5;
+		currentExp = 0;
 	}
 	else if (level == 10) {
 		blueText();
@@ -514,4 +495,24 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
 *******************************************************************************
 )EOF");
 	}
+}
+
+//initial values for the main character
+character::character() {
+	totalHealth = 100 + (strength * 10);
+	currentHealth = totalHealth;
+	totalMana = 50 + (wisdom * 10);
+	currentMana = totalMana;
+	currentExp = 0;
+	neededExp = 100;
+	currentGold = 50;
+	level = 1;
+	wisdom = 5;
+	strength = 5;
+	dexterity = 5;
+	posX = 1;
+	posY = 1;
+	hpPotions = 3;
+	mpPotions = 3;
+	damage = 5 + (dexterity * 2) + wisdom + (strength * 1.5);
 }

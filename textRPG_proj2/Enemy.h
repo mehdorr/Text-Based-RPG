@@ -16,7 +16,6 @@ public:
 	int enemyDamage;
 	int givenGold;
 
-
 	//functions
-	void fightEnemy();
+	void fightEnemy(character player);
 };

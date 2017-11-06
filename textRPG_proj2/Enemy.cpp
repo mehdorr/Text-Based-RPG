@@ -29,7 +29,7 @@ enemy::enemy() {
 }
 
 //method for fighting
-void enemy::fightEnemy() {
+void enemy::fightEnemy(character player) {
 	string enemyNameArr[] = {
 		"Zombie",
 		"Bandit",
@@ -39,7 +39,6 @@ void enemy::fightEnemy() {
 	};
 	int enemyNameArrLength = (sizeof(enemyNameArr) / sizeof(*enemyNameArr));
 	string enemyName = enemyNameArr[rand() % enemyNameArrLength];
-	character player;
 	cout << "You're facing a(n) " << enemyName << endl;
 	bool fight = true;
 	while (fight) {
@@ -89,7 +88,7 @@ void enemy::fightEnemy() {
 					break;
 				}
 				else {
-					cout << "Success! You ran away!\n\n";
+					cout << "Succeed! You ran away!\n\n";
 					player.travel();
 				}
 			}

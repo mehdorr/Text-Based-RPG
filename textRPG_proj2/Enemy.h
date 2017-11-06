@@ -4,9 +4,8 @@
 #include <iostream>
 #include <string>
 
-class enemy {
-public:
-	enemy();
+class enemy 
+{
 	//stats
 	int currentHealth;
 	int totalHealth;
@@ -15,8 +14,8 @@ public:
 	int givenExp;
 	int enemyDamage;
 	int givenGold;
-
-
+public:
+	enemy();
 	//functions
 	void fightEnemy();
 };

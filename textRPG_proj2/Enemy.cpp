@@ -40,24 +40,15 @@ void enemy::fightEnemy() {
 	int enemyNameArrLength = (sizeof(enemyNameArr) / sizeof(*enemyNameArr));
 	string enemyName = enemyNameArr[rand() % enemyNameArrLength];
 	character player;
-	int playerHealth = player.currentHealth;
-	int playerMaxHealth = player.totalHealth;
-	int playerMana = player.currentMana;
-	int playerMaxMana = player.totalMana;
-	int playerDamage = player.damage;
-	int playerExp = player.currentExp;
-	int playerGold = player.currentGold;
 	cout << "You're facing a(n) " << enemyName << endl;
 	bool fight = true;
 	while (fight) {
 		blueText();
-		cout << "||===================================||" << endl;
-		cout << "||Player                        Enemy||" << endl;
-		cout << "||" << playerHealth << "/" << playerMaxHealth << "        Health         " << currentHealth << "/" << totalHealth << "||" << endl;
-		cout << "||" << playerMana << "/" << playerMaxMana << "           Mana            " << currentMana << "/" << totalMana << "||" << endl;
-		cout << "||" << playerDamage << "         Damage per hit          " << enemyDamage << "||" << endl;
-		cout << "||" << "1. Attack" << "                    " << "2. Run" << "||" << endl;
-		cout << "||===================================||" << endl;
+		cout << "Player                        Enemy" << endl;
+		cout << player.currentHealth << "/" << player.totalHealth << "        Health         " << currentHealth << "/" << totalHealth << endl;
+		cout << player.currentMana << "/" << player.totalMana << "           Mana            " << currentMana << "/" << totalMana << endl;
+		cout << player.damage << "         Damage per hit          " << enemyDamage << endl;
+		cout << "1. Attack" << "                    " << "2. Run" << endl;
 		string playerChoice;
 		whiteText();
 		cout << "> ";
@@ -67,17 +58,17 @@ void enemy::fightEnemy() {
 			switch (playerChosen) {
 			case 1: {
 				greenText();
-				cout << "You hit the enemy for " << playerDamage << ".\n";
-				currentHealth = currentHealth - playerDamage;
+				cout << "You hit the enemy for " << player.damage << ".\n";
+				currentHealth = currentHealth - player.damage;
 				cout << "The " << enemyName << " hit you for " << enemyDamage << ".\n\n";
-				playerHealth = playerHealth - enemyDamage;
+				player.currentHealth = player.currentHealth - enemyDamage;
 				player.isAlive();
 				if (currentHealth <= 0) {
 					blueText();
 					cout << "You won the fight!\n\n";
 					cout << "You recieved +" << givenExp << "XP" << " and +" << givenGold << " Gold.\n\n";
-					playerGold = playerGold + givenGold;
-					playerExp = playerExp + givenExp;
+					player.currentGold = player.currentGold + givenGold;
+					player.currentExp = player.currentExp + givenExp;
 					fight = false;
 					player.checkExp();
 					player.travel();
@@ -93,7 +84,7 @@ void enemy::fightEnemy() {
 				if (runChance == 1) {
 					cout << "Fail! The " << enemyName << " catches up to you, making you fight.\n";
 					cout << "The " << enemyName << " hit you for " << enemyDamage << ".\n\n";
-					playerHealth = playerHealth - enemyDamage;
+					player.currentHealth -= enemyDamage;
 					player.isAlive();
 					break;
 				}

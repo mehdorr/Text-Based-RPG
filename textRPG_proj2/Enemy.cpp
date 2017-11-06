@@ -37,18 +37,18 @@ void enemy::fightEnemy() {
 		"Rat",
 		"Ghost"
 	};
-	int enemyNameArrLength = (sizeof(enemyNameArr) / sizeof(*enemyNameArr));
+	auto enemyNameArrLength = (sizeof(enemyNameArr) / sizeof(*enemyNameArr));
 	string enemyName = enemyNameArr[rand() % enemyNameArrLength];
 	character player;
-	int playerHealth = player.currentHealth;
-	int playerMaxHealth = player.totalHealth;
-	int playerMana = player.currentMana;
-	int playerMaxMana = player.totalMana;
-	int playerDamage = player.damage;
-	int playerExp = player.currentExp;
-	int playerGold = player.currentGold;
+	auto playerHealth = player.currentHealth;
+	auto playerMaxHealth = player.totalHealth;
+	auto playerMana = player.currentMana;
+	auto playerMaxMana = player.totalMana;
+	auto playerDamage = player.damage;
+	auto playerExp = player.currentExp;
+	auto playerGold = player.currentGold;
 	cout << "You're facing a(n) " << enemyName << endl;
-	bool fight = true;
+	auto fight = true;
 	while (fight) {
 		blueText();
 		cout << "||===================================||" << endl;

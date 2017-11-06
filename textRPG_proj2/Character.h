@@ -15,9 +15,10 @@ public:
 	int currentMana;
 	int totalMana;
 	int currentExp;
-	int neededExp;
+	double neededExp;
 	int level;
 	int currentGold;
+	int damage;
 
 	//attributes
 	int wisdom;
@@ -43,6 +44,8 @@ public:
 	void travel();
 	void getPlayerChoice();
 	void lookAround();
+	void getAttacked();
+	void checkExp();
 
 	//strings
 

@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class character {
 public:
 	character();
@@ -49,9 +47,9 @@ public:
 
 	//strings
 
-	string playerName;
-	string playerClass;
-	string playerRace;
-	string playerChoice;
+	std::string playerName;
+	std::string playerClass;
+	std::string playerRace;
+	std::string playerChoice;
 
 };

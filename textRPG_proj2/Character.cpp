@@ -63,7 +63,7 @@ void character::getAttacked() {
 		blueText();
 		cout << "You've been attacked!\n\n";
 		enemy fight;
-		fight.fightEnemy(this *player);
+		fight.fightEnemy(*this);
 	}
 	else {
 		travel();

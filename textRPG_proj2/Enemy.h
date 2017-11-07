@@ -8,14 +8,14 @@ class enemy {
 public:
 	enemy();
 	//stats
-	int currentHealth;
-	int totalHealth;
-	int currentMana;
-	int totalMana;
-	int givenExp;
-	int enemyDamage;
-	int givenGold;
+	static int currentHealth;
+	static int totalHealth;
+	static int currentMana;
+	static int totalMana;
+	static int givenExp;
+	static int enemyDamage;
+	static int givenGold;
 
 	//functions
-	void fightEnemy(character player);
+	void fightEnemy(character&);
 };

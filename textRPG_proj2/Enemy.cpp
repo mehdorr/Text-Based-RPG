@@ -28,8 +28,10 @@ enemy::enemy() {
 	enemyDamage = totalHealth / 5;
 }
 
+
+
 //method for fighting
-void enemy::fightEnemy(character player) {
+void enemy::fightEnemy(character& player) {
 	string enemyNameArr[] = {
 		"Zombie",
 		"Bandit",

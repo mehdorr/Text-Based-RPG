@@ -23,7 +23,7 @@ enemy::enemy() {
 	currentHealth = totalHealth;
 	totalMana = 0;
 	currentMana = totalMana;
-	givenExp = totalHealth * 10;
+	givenExp = totalHealth * 15;
 	givenGold = totalHealth / 3;
 	enemyDamage = totalHealth / 5;
 }

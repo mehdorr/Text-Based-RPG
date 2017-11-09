@@ -75,10 +75,11 @@ void character::useHealthPotion() {
 	if (currentHealth != totalHealth) {
 		hpPotions--;
 		currentHealth += 15;
-		cout << "You drank a Health Potion. +15MP\n\n";
+		cout << "You drank a Health Potion. +15HP\n\n";
 		if (currentHealth > totalHealth) {
 			currentHealth = totalHealth;
 		}
+		travel();
 	}
 	else {
 		blueText();
@@ -94,6 +95,7 @@ void character::useManaPotion() {
 		if (currentMana > totalMana) {
 			currentMana = totalMana;
 		}
+		travel();
 	}
 	else {
 		blueText();
@@ -460,19 +462,18 @@ void character::setPlayerRace() {
 	}
 }
 
-//used to check if the player's levelled up
+//used to check if the player's leveled up
 void character::checkExp() {
 	if (currentExp >= neededExp) {
 		level++;
 		cout << "Level Up! You are now level " << level << ".\n\n";
 		neededExp = neededExp * 1.5;
 		currentExp = 0;
-	}
-	else if (level == 10) {
-		blueText();
-		cout << "You reached Level 10.\n\n";
-		cout << "You won the game, congratulations!\n";
-		printf(R"EOF(
+		if (level == 10) {
+			blueText();
+			cout << "You reached Level 10.\n\n";
+			cout << "You won the game, congratulations!\n";
+			printf(R"EOF(
 *******************************************************************************
           |                   |                  |                     |       
  _________|________________.=""_;=.______________|_____________________|_______
@@ -494,6 +495,8 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
 /______/______/______/______/______/______/______/______/______/______/______/_
 *******************************************************************************
 )EOF");
+			exit(0);
+		}
 	}
 }
 
@@ -514,5 +517,5 @@ character::character() {
 	posY = 1;
 	hpPotions = 3;
 	mpPotions = 3;
-	damage = 5 + (dexterity * 2) + wisdom + (strength * 1.5);
+	damage = (int)(5 + (dexterity * 2) + wisdom + (strength * 1.5));
 }

@@ -72,34 +72,48 @@ void character::getAttacked() {
 
 //attempt to use a hp/mp potion - remove one from the inventory and restore hp/mp respectively
 void character::useHealthPotion() {
-	if (currentHealth != totalHealth) {
-		hpPotions--;
-		currentHealth += 15;
-		cout << "You drank a Health Potion. +15HP\n\n";
-		if (currentHealth > totalHealth) {
-			currentHealth = totalHealth;
+	if (hpPotions <= 0) {
+		if (currentHealth != totalHealth) {
+			hpPotions--;
+			currentHealth += 15;
+			cout << "You drank a Health Potion. +15HP\n\n";
+			if (currentHealth > totalHealth) {
+				currentHealth = totalHealth;
+			}
+			travel();
 		}
-		travel();
+		else {
+			blueText();
+			cout << "Your Health is already full!\n\n";
+			travel();
+		}
 	}
 	else {
 		blueText();
-		cout << "Your Health is already full!\n\n";
+		cout << "You don't have any Health Potions left!\n\n";
 		travel();
 	}
 }
 void character::useManaPotion() {
-	if (currentMana != totalMana) {
-		mpPotions--;
-		currentMana += 15;
-		cout << "You drank a Mana Potion. +15MP\n\n";
-		if (currentMana > totalMana) {
-			currentMana = totalMana;
+	if (mpPotions <= 0) {
+		if (currentMana != totalMana) {
+			mpPotions--;
+			currentMana += 15;
+			cout << "You drank a Mana Potion. +15MP\n\n";
+			if (currentMana > totalMana) {
+				currentMana = totalMana;
+			}
+			travel();
 		}
-		travel();
+		else {
+			blueText();
+			cout << "Your Mana is already full!\n\n";
+			travel();
+		}
 	}
 	else {
 		blueText();
-		cout << "Your Mana is already full!\n\n";
+		cout << "You don't have any Mana Potions left!\n\n";
 		travel();
 	}
 }

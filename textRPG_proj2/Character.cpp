@@ -72,7 +72,7 @@ void character::getAttacked() {
 
 //attempt to use a hp/mp potion - remove one from the inventory and restore hp/mp respectively
 void character::useHealthPotion() {
-	if (hpPotions <= 0) {
+	if (hpPotions > 0) {
 		if (currentHealth != totalHealth) {
 			hpPotions--;
 			currentHealth += 15;
@@ -95,7 +95,7 @@ void character::useHealthPotion() {
 	}
 }
 void character::useManaPotion() {
-	if (mpPotions <= 0) {
+	if (mpPotions > 0) {
 		if (currentMana != totalMana) {
 			mpPotions--;
 			currentMana += 15;
